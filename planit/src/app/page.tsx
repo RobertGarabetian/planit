@@ -8,7 +8,7 @@ export default function Home() {
           <div className="max-w-md">
             <h1 className="text-6xl font-bold text-slate-500">PlanIt</h1>
             <p className="py-6 text-slate-500">
-              The last calendar app you&apos;ll ever need (at least I think so!)
+              The last calendar app you will ever need (at least I think so!)
               <br />
               My hope is to create a calendar app that will help myself and
               others to organize events, school, work, and more as
