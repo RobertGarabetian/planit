@@ -54,7 +54,9 @@ const page = () => {
 
         <div className="grid grid-rows-1 grid-cols-7 font-medium text-2xl mt-10 border-b divide-x">
           {daysInWeek.map((days) => (
-            <div className="px-4 text-left">{weekNames[days]}</div>
+            <div className="px-4 text-left" key={days}>
+              {weekNames[days]}
+            </div>
           ))}
         </div>
         <div className="grid grid-rows-5 grid-cols-7 justify-items-center mt-4">
