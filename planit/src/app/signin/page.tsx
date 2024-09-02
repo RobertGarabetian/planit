@@ -63,7 +63,7 @@ const page = () => {
         </form>{" "}
       </div>
       <h3 className=" font-medium text-slate-500 h-auto w-1/4 text-left">
-        Don't have an account yet? <Link href="/signup">Sign Up</Link>
+        Don&apos;t have an account yet? <Link href="/signup">Sign Up</Link>
       </h3>
     </div>
   );
