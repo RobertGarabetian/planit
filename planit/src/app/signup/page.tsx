@@ -1,15 +1,11 @@
-import Link from "next/link";
-import React from "react";
-import { login, OAuthFunction } from "./actions";
-import GoogleSignIn from "@/components/googlesignin";
+import { signup } from "./actions";
 
 const page = () => {
   return (
     <div className="flex flex-col justify-center h-screen w-screen items-center gap-y-4">
       <h1 className="text-6xl font-bold text-slate-500 h-auto w-1/4 text-left">
-        Sign In
+        Sign Up
       </h1>
-      <GoogleSignIn />
       <div className="flex flex-col w-1/4 gap-y-2">
         <form>
           <label
@@ -31,6 +27,26 @@ const page = () => {
               type="text"
               className="grow"
               placeholder="Email"
+            />
+          </label>
+          <label
+            htmlFor="first_name"
+            className="input input-bordered flex items-center gap-2 input-lg"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+            </svg>
+            <input
+              id="first_name"
+              name="first_name"
+              type="text"
+              className="grow"
+              placeholder="First Name"
             />
           </label>
           <label
@@ -57,14 +73,11 @@ const page = () => {
               type="Password"
             />
           </label>
-          <button className="btn" formAction={login}>
+          <button className="btn" formAction={signup}>
             Sign up
           </button>
-        </form>{" "}
+        </form>
       </div>
-      <h3 className=" font-medium text-slate-500 h-auto w-1/4 text-left">
-        Don't have an account yet? <Link href="/signup">Sign Up</Link>
-      </h3>
     </div>
   );
 };
