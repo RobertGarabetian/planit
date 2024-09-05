@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 
 import Modal from "@/components/old-stuff/modal";
-import React from "react";
 
 const monthNames = [
   "January",
@@ -43,6 +42,7 @@ export default async function page() {
   if (!user) {
     return redirect("/sign-in");
   }
+
   let date = new Date();
   let month = date.getMonth();
 

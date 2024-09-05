@@ -15,7 +15,7 @@ export default function Home() {
               minimalistically as possible, without sacrificing some key
               features!
             </p>
-            <Link href="/signin">
+            <Link href="/sign-in">
               <button className="btn btn-primary">Sign In</button>
             </Link>
           </div>
