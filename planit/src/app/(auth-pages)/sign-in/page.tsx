@@ -8,7 +8,7 @@ export default function Login({ searchParams }: { searchParams: Message }) {
       <form className=" flex flex-col w-1/4 gap-4">
         <h1 className="text-6xl font-bold  h-auto text-left">Sign In</h1>
         <p className="text-sm text-foreground font-medium">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link className="link" href="/sign-up">
             Sign up
           </Link>
