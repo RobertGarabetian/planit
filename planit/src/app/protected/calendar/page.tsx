@@ -61,9 +61,9 @@ export default async function page() {
   let currentMonthName = monthNames[month];
   function formatDateToLocal(day: Date) {
     const localDate = new Date(day);
-    const offset = day.getTimezoneOffset();
-    day.setMinutes(day.getMinutes() - offset);
-    return day.toISOString().split("T")[0];
+    const offset = localDate.getTimezoneOffset();
+    localDate.setMinutes(localDate.getMinutes() - offset);
+    return localDate.toISOString().split("T")[0];
   }
   // Get the current week's dates
   const weekDays = getWeekDays(date);
