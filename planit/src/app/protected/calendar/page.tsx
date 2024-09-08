@@ -86,43 +86,38 @@ export default async function page() {
   const weekEvents = await Promise.all(eventsPromises);
 
   return (
-    <div className=" text-white">
-      <div className="rounded-none bg-slate-700 p-5">
-        <h1 className="text-4xl font-bold ">{currentMonthName}</h1>
+    <div className="bg-slate-700 p-5 text-white rounded">
+      <h1 className="text-5xl font-bold ">{currentMonthName}</h1>
 
-        <h1 className="text-4xl font-bold ">
-          Week of {weekDays[0].toLocaleDateString()} -{" "}
-          {weekDays[6].toLocaleDateString()}
-        </h1>
+      <h1 className="text-xl font-normal ">
+        Week of {weekDays[0].toLocaleDateString()} -{" "}
+        {weekDays[6].toLocaleDateString()}
+      </h1>
 
-        <div className="grid grid-rows-1 grid-cols-7 font-medium text-2xl mt-10 border-b divide-x">
-          {weekNames.map((day, index) => (
-            <div className="px-4 text-left" key={index}>
-              {day}
-            </div>
-          ))}
-        </div>
-        <div className="grid grid-rows-1 grid-cols-7 justify-items-center mt-4">
-          {weekDays.map((day, index) => (
-            <div
-              className="text-left w-full h-72 flex flex-col p-2"
-              key={index}
-            >
-              <div className="w-full text-left">{day.getDate()}</div>
+      <div className="grid grid-rows-1 grid-cols-7 font-medium text-2xl mt-10 ">
+        {weekNames.map((day, index) => (
+          <div className="px-4 text-left border-b border-l" key={index}>
+            {day}
+          </div>
+        ))}
+      </div>
+      <div className="grid grid-rows-1 grid-cols-7 justify-items-center mt-4">
+        {weekDays.map((day, index) => (
+          <div className="text-left w-full h-72 flex flex-col p-2" key={index}>
+            <div className="w-full text-left">{day.getDate()}</div>
 
-              {/* Render events for each day */}
-              {weekEvents[index].length > 0 ? (
-                weekEvents[index].map((event: Event) => (
-                  <CollapsedEvent key={event.id} event={event} />
-                ))
-              ) : (
-                <div>No events</div>
-              )}
-              <Modal />
-              <div className="size-1/12 border-r border-b mt-auto ml-auto" />
-            </div>
-          ))}
-        </div>
+            {/* Render events for each day */}
+            {weekEvents[index].length > 0 ? (
+              weekEvents[index].map((event: Event) => (
+                <CollapsedEvent key={event.id} event={event} />
+              ))
+            ) : (
+              <div>{""}</div>
+            )}
+            <Modal />
+            <div className="size-1/12 border-r border-b mt-auto ml-auto" />
+          </div>
+        ))}
       </div>
     </div>
   );

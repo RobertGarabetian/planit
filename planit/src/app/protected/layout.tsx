@@ -9,17 +9,14 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col">
       {/* Navbar */}
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle"
-            >
-              <svg
+            <div tabIndex={0} role="button" className="btn btn-ghost text-xl">
+              PlanIt
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
                 fill="none"
@@ -32,7 +29,7 @@ export default async function Layout({
                   strokeWidth="2"
                   d="M4 6h16M4 12h16M4 18h7"
                 />
-              </svg>
+              </svg> */}
             </div>
             <ul
               tabIndex={0}
@@ -43,17 +40,11 @@ export default async function Layout({
                   <button type="submit">Sign Out</button>
                 </form>
               </li>
-              <li>
-                <a>Portfolio</a>
-              </li>
-              <li>
-                <a>About</a>
-              </li>
             </ul>
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">{}</a>
+          <div className="text-xl font-bold"></div>
         </div>
         <div className="navbar-end">
           <button className="btn btn-ghost btn-circle">
@@ -95,7 +86,7 @@ export default async function Layout({
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex flex-col">
         {/* Main Content */}
         <main className="flex-1 bg-white">{children}</main>
       </div>
