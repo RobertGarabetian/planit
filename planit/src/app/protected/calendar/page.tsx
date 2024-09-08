@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import Modal from "@/components/old-stuff/modal";
+import CollapsedEvent from "@/components/collapsed-event";
 
 const monthNames = [
   "January",
@@ -42,6 +43,7 @@ export default async function page() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const user_id = user?.id;
 
   if (!user) {
     return redirect("/sign-in");
@@ -50,10 +52,38 @@ export default async function page() {
   // Get today's date
   let date = new Date();
   let month = date.getMonth();
-  let currentMonthName = monthNames[month];
+  type Event = {
+    id: number;
+    event_name: string;
+    event_date: string; // Adjust this based on your DB schema
+  };
 
+  let currentMonthName = monthNames[month];
+  function formatDateToLocal(day: Date) {
+    const localDate = new Date(day);
+    const offset = day.getTimezoneOffset();
+    day.setMinutes(day.getMinutes() - offset);
+    return day.toISOString().split("T")[0];
+  }
   // Get the current week's dates
   const weekDays = getWeekDays(date);
+  const eventsPromises: Array<Promise<Array<Event>>> = weekDays.map(
+    async (day) => {
+      const { data: events, error } = await supabase
+        .from("events")
+        .select("*")
+        .eq("user_id", user_id)
+        .eq("event_date", formatDateToLocal(day)); // Adjust based on your date format
+
+      if (error) {
+        console.error("Error fetching events:", error);
+        return [];
+      }
+
+      return events || [];
+    }
+  );
+  const weekEvents = await Promise.all(eventsPromises);
 
   return (
     <div className=" text-white">
@@ -79,6 +109,15 @@ export default async function page() {
               key={index}
             >
               <div className="w-full text-left">{day.getDate()}</div>
+
+              {/* Render events for each day */}
+              {weekEvents[index].length > 0 ? (
+                weekEvents[index].map((event: Event) => (
+                  <CollapsedEvent key={event.id} event={event} />
+                ))
+              ) : (
+                <div>No events</div>
+              )}
               <Modal />
               <div className="size-1/12 border-r border-b mt-auto ml-auto" />
             </div>

@@ -5,7 +5,7 @@ export async function POST(req: Request) {
 
 
 
-  const { event_name, start_time, end_time, event_description } = await req.json();
+  const { event_name, start_time, end_time, event_description, event_date } = await req.json();
 
   const supabase = createClient();
   const {
@@ -18,6 +18,7 @@ export async function POST(req: Request) {
     start_time,
     end_time,
     event_description,
+    event_date,
     user_id
   });
 

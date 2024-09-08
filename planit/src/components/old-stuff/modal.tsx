@@ -13,6 +13,7 @@ export default function Modal() {
     const start_time = formData.get("start_time");
     const end_time = formData.get("end_time");
     const event_description = formData.get("event_description");
+    const event_date = formData.get("event_date");
 
     try {
       const res = await fetch("/api/submit-event", {
@@ -25,6 +26,7 @@ export default function Modal() {
           start_time: start_time,
           end_time: end_time,
           event_description: event_description,
+          event_date: event_date,
         }),
       });
 
@@ -102,6 +104,17 @@ export default function Modal() {
                     id="end_time"
                     name="end_time"
                     type="time"
+                    className="border rounded-md p-2 w-full bg-transparent placeholder:text-black"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <label htmlFor="event_date" className="text-sm font-medium">
+                    Date
+                  </label>
+                  <input
+                    id="event_date"
+                    name="event_date"
+                    type="date"
                     className="border rounded-md p-2 w-full bg-transparent placeholder:text-black"
                   />
                 </div>
